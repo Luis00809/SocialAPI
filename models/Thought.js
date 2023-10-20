@@ -30,4 +30,4 @@ const Thought = model('Thought', thoughtSchema);
 
 const errorHandler = (err) => console.log(err);
 
-module.exports = Thoughts;
+module.exports = Thought;
