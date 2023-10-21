@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Thoughts, Reaction } = require('../models');
+const { User, Thought, Reaction } = require('../../models');
 // import ObjectId???
 
 
@@ -18,10 +18,15 @@ router.post('/create', async (req,res) => {
 // update a user
 router.put('/update/:id', async (req, res) => {
     try {
-        const user = await User.findOneAndUpdate()
+        const user = await User.findOneAndUpdate(
+                { _id: req.params.id},
+                req.body,
+                { new: true }
+            );
+        res.status(200).json(user);
     } catch (err) {
         console.log(err);
-        res.status(500).json(user)
+        res.status(500).json(err)
     }
 });
 
@@ -31,15 +36,44 @@ router.delete('/delete/:id', async (req,res) => {
         
         const user = await User.findOneAndDelete({ _id: req.params.id});
        
-        await Application.deleteMany( { _id: { $in: user.applications } });
-
-        res.json(user, { message: 'User and associated apps deleted!' } );
+        res.json(user);
 
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
     }
-})
+}); 
+
+// add a friend
+router.post('/:userId/addFriend/:friendId', async (req,res) => {
+    try {
+        const user = await User.findById(req.params.userId);
+
+        user.friends.push(req.params.friendId);
+
+        await user.save();
+
+        res.status(200).json(user)
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+});
+
+// delete a friend
+router.delete('/:userId/deleteFriend/:friendId', async (req,res) => {
+    try {
+        const user = await User.findById(req.params.userId);
+        user.friends = user.friends.filter(friendId => friendId.toString() !== req.params.friendId);
+
+        await user.save();
+        res.status(200).json(user);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err)
+    }
+});
 
 
 module.exports = router;
