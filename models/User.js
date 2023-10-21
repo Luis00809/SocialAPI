@@ -29,7 +29,13 @@ const userSchema = new Schema(
 
 userSchema.virtual('friendCount').get(function () {
     return this.friends.length;
-})
+});
+
+userSchema.post('findOneAndDelete', async function(doc) {
+    if(doc) {
+        await Thought.deleteMany({_id: { $in: doc.thoughts } });
+    };
+});
 
 const User = model('User', userSchema);
 
