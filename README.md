@@ -22,10 +22,24 @@
    ## Usage
    
   The first step to use this app is to install the proper dependencies, mongoose & express. Then be sure to have MongoDB installed to see the database and insomnia to see the express routes. Once those are installed, a user can then create a user, add some thoughts and leave reactions using the proper route.
+
+  Here is a walkthough for starting the database: https://drive.google.com/file/d/1I-Zs9Rz_T9a_hO-UaECnfPgq41wI7TIe/view
+
+  Here is the demo for the user collection: https://drive.google.com/file/d/1LhMODTaJWvnEK_B34SvxN9n16sSoTjRi/view
+
+  ![userRoute](/images/userDemo.png)
+
+
+  Here is a demo for the Thought collection: https://drive.google.com/file/d/1Al4iqmYPb8qfm353VVzHqWM5_xiVhKr6/view
+
+  ![userRoute](/images/Screenshot%202023-10-22%20at%208.17.28 PM.png)
+
+
+  Here is a demo for the reaction schema: https://drive.google.com/file/d/1DApCVi3UNswUVYM2i0EHTcvYcgr86ZLQ/view
    
+  ![userRoute](/images/Screenshot%202023-10-22%20at%208.18.26 PM.png)
   
    
-![alt text](file path)
    
    ## Credits
    
