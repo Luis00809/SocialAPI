@@ -32,7 +32,7 @@ userSchema.virtual('friendCount').get(function () {
 });
 
 userSchema.post('findOneAndDelete', async function(doc) {
-    if(doc) {
+    if(doc && thoughts) {
         await Thought.deleteMany({_id: { $in: doc.thoughts } });
     };
 });
